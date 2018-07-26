@@ -1066,6 +1066,10 @@ function DynamicCam:RegisterEvents()
             for i, event in pairs(situation.events) do
                 if (not events[event]) then
                     events[event] = true;
+                    if event == "ENCOUNTER_STOP" then
+                        events[i] = "ENCOUNTER_END"
+                        event = "ENCOUNTER_END"
+                    end
                     self:RegisterEvent(event, "EventHandler");
                     -- self:DebugPrint("Registered for event:", event);
                 end
